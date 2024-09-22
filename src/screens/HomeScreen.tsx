@@ -1,29 +1,27 @@
 import React from 'react';
-import { Button, Text } from 'react-native';
 import { useGetHotelsQuery } from '../redux/apis/hotels.api';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 import style from './screens.style';
 import Loader from '../components/Loader';
+import HotelCard from '../components/HotelCard';
+import { useSelector } from 'react-redux';
+import { selectHotels } from '../redux/slices/hotels.slice';
+import { FlatList } from 'react-native';
 
 const HomeScreen = () => {
 
-  const navigation = useNavigation();
 
   const {isLoading} = useGetHotelsQuery();
+  const hotels = useSelector(selectHotels);
 
-  const body = <><Text>{'Home Screen'}</Text>
-  <Button
-   onPress={() =>  navigation.navigate('Preview')}
-   title="Learn More"
-   color="#841584"
-   accessibilityLabel="Learn more about this purple button"
-   />
-   </>;
+  const List = <FlatList
+  showsVerticalScrollIndicator={ false }
+  data={hotels.map((hotel) => hotel)}
+  renderItem={({item}) => <HotelCard hotel={item}/>}/>;
 
   return (
     <SafeAreaView style={style.container}>
-        {isLoading ?  <Loader/> : body}
+        {isLoading ?  <Loader/> : List}
     </SafeAreaView>
   );
 };

@@ -1,18 +1,33 @@
-import React from 'react';
-import { ActivityIndicator, Text } from 'react-native';
-import { useGetHotelsQuery } from '../redux/apis/hotels.api';
+import React, { useEffect } from 'react';
+import {  Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import style from './screens.style';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { selectHotel } from '../redux/slices/hotels.slice';
+import { useNavigation } from '@react-navigation/native';
+
+type PreviewScreenRouteProp = RouteProp<{ Preview: { id: number } }, 'Preview'>;
+
 const PreviewScreen = () => {
+    const navigation = useNavigation();
+    const { id } = useRoute<PreviewScreenRouteProp>().params;
+    const hotel = useSelector(selectHotel(id));
 
-  const {isLoading} = useGetHotelsQuery();
+   useEffect(() => {
+        navigation.setOptions({
+            headerTitle: hotel?.name || 'Hotel',
+        });
+    }, [hotel, navigation]);
 
-
-  if(isLoading) {return (<ActivityIndicator />);}
+    if(!hotel){
+        return(<SafeAreaView style={style.container}>
+                <Text>{'Hotel not found'}</Text>
+            </SafeAreaView >);}
 
   return (
     <SafeAreaView style={style.container}>
-        {isLoading ?  <ActivityIndicator /> : <Text>{'Preview Screen'}</Text>}
+        <Text>{hotel.name}</Text>
     </SafeAreaView >
   );
 };
