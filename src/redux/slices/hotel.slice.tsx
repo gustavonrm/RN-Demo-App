@@ -1,22 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Hotel } from '../../types/hotel';
 
-export interface HotelState {
-  value: number
+interface HotelState {
+  hotels: Hotel[]
 }
 
 const initialState: HotelState = {
-  value: 0,
+    hotels: [],
 };
 
 export const hotelSlice = createSlice({
   name: 'hotel',
   initialState,
   reducers: {
-    // TODO
+    setHotels: (state, action: PayloadAction<Hotel[]>) =>{
+        state.hotels = action.payload;
+    },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const {  } = hotelSlice.actions;
+export const { setHotels } = hotelSlice.actions;
 
 export default hotelSlice.reducer;

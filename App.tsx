@@ -10,9 +10,9 @@ const App = () => {
 
   return (
     <Provider store={store}>
-    <SafeAreaView >
-      <Main/>
-    </SafeAreaView>
+      <SafeAreaView >
+        <Main/>
+      </SafeAreaView>
     </Provider>
   );
 };

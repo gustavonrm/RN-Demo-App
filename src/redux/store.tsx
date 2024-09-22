@@ -1,10 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import hotelSlice from './slices/hotel.slice';
+import { hotelApi } from './apis/hotel.api';
 
 export const store = configureStore({
   reducer: {
     hotel: hotelSlice,
+    [hotelApi.reducerPath]: hotelApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(hotelApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
