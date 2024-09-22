@@ -1,27 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Hotel } from '../../types/hotel';
 
-// typesHotel[]
-type HotelState =  { hotels: Hotel[]}
-const initialState: HotelState = {hotels: []};
-
+type HotelState = Hotel[];
+const initialState: HotelState = [];
 // reducers
 export const hotelsSlice = createSlice({
   name: 'hotels',
   initialState,
   reducers: {
-    setHotels: (state, action: PayloadAction<Hotel[]>) =>{
-      console.log(state);
-      console.log(action.payload);
-        state.hotels = action.payload;
+    setHotels: (state, action: PayloadAction<Hotel[]>) => {
+      return action.payload;
     },
   },
 });
+
 
 export const { setHotels } = hotelsSlice.actions;
 
 export default hotelsSlice.reducer;
 
 // selectors
-export const selectHotels = (state: HotelState) => state.hotels.hotels;
-export const selectHotel = (id: number) => (state: HotelState) => state.hotels?.find((e) => e.id === id);
+export const selectHotels = (state: { hotels: Hotel[] }) => state.hotels;
+export const selectHotel = (id: number) => (state: { hotels: Hotel[] }) => state.hotels?.find((e) => e.id === id);
