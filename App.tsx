@@ -1,18 +1,16 @@
 import React from 'react';
-import {
-  SafeAreaView,
-} from 'react-native';
-import Main from './src/screens/Main';
+import Main from './src/navigation/Main';
 import { store } from './src/redux/store';
 import { Provider } from 'react-redux';
+import { NavigationContainer } from '@react-navigation/native';
 
 const App = () => {
 
   return (
     <Provider store={store}>
-      <SafeAreaView >
+      <NavigationContainer>
         <Main/>
-      </SafeAreaView>
+      </NavigationContainer>
     </Provider>
   );
 };
