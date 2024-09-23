@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity} from 'react-native';
-import { Hotel } from '../types/hotel';
+import { Hotel } from '../../types/hotel';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigationTypes';

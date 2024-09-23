@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator} from 'react-native';
-import { PINK } from '../constants/colors';
+import { PINK } from '../../../constants/colors';
 
 const Loader = () => {
 
