@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import {  Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import style from './screens.style';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { selectHotel } from '../redux/slices/hotels.slice';
@@ -21,12 +20,12 @@ const PreviewScreen = () => {
     }, [hotel, navigation]);
 
     if(!hotel){
-        return(<SafeAreaView style={style.container}>
+        return(<SafeAreaView>
                 <Text>{'Hotel not found'}</Text>
             </SafeAreaView >);}
 
   return (
-    <SafeAreaView style={style.container}>
+    <SafeAreaView >
         <Text>{hotel.name}</Text>
     </SafeAreaView >
   );
