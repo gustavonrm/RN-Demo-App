@@ -6,15 +6,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigationTypes';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import style from './style';
+import { YELLOW } from '../../constants/colors';
 
 type HotelCardProps = {
     hotel: Hotel
 }
-
-const simpleCurrencyFormatter = (price: string, currency: string) => {
-  let currencySymbol = currency === 'EUR' ? '€' : '$';
-  return currencySymbol + price;
-};
 
 const HotelCard = ({hotel}: HotelCardProps) => {
 
@@ -33,12 +29,24 @@ const HotelCard = ({hotel}: HotelCardProps) => {
         </Text>
       </View>
     </View>
+
     <View style={style.bottom}>
-      <Text>{hotel.location.city} - {hotel.location.address}</Text>
-      <Text>{hotel.name}</Text>
-      <FontAwesomeIcon icon="star" />
-      <Text>{hotel.stars}</Text><Text>{hotel.userRating}</Text>
-      <Text>{hotel.checkIn.from}</Text><Text>{hotel.checkIn.to}</Text><Text>{hotel.checkOut.from}</Text><Text>{hotel.checkOut.to}</Text>
+      <Text style={style.text2} numberOfLines={1} >HOTEL in {hotel.location.city} - {hotel.location.address}</Text>
+      <Text style={style.text1}>{hotel.name}</Text>
+      <View style={style.row}>
+        <View style={style.stars}>
+          {Array.from({length: hotel.stars}).map(() => <FontAwesomeIcon icon="star" color={YELLOW} />)}
+        </View>
+        <Text style={style.text3}> | {hotel.userRating} user rating</Text>
+      </View>
+      <View style={style.row}>
+        <FontAwesomeIcon icon="clock" style={style.icon}/>
+        <Text style={style.text3}>Check in from <Text style={style.text2}>{hotel.checkIn.from} to {hotel.checkIn.to}</Text></Text>
+      </View>
+      <View style={style.row}>
+        <FontAwesomeIcon icon="clock" style={style.icon}/>
+        <Text style={style.text3}>Check out from  <Text style={style.text2}>{hotel.checkOut.from} to {hotel.checkOut.to}</Text></Text>
+      </View>
     </View>
 
 

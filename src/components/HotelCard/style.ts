@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { GREY, PINK, WHITE } from '../../constants/colors';
+import { BLACK, GREY, PINK, WHITE } from '../../constants/colors';
 
 const style = StyleSheet.create({
     container: {
@@ -9,6 +9,7 @@ const style = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: WHITE,
         marginVertical: 10,
+        paddingBottom: 10,
     },
     image:{
         flex:1,
@@ -33,7 +34,7 @@ const style = StyleSheet.create({
           textShadowRadius: 4,
        },
     priceText2:{
-        fontWeight: '100!important',
+        fontWeight: 'light !important',
         color: WHITE,
         fontSize: 14,
         textShadowColor: PINK,
@@ -60,6 +61,32 @@ const style = StyleSheet.create({
         flexDirection: 'column',
         margin: 10,
     },
+    text1:{
+        fontWeight: 'bold',
+        color: BLACK,
+        fontSize: 18,
+        marginVertical: 2,
+    },
+    text2:{
+        fontWeight: '300',
+        color: BLACK,
+        fontSize: 14,
+        marginVertical: 2,
+    },
+    text3:{
+        fontWeight: '500',
+        color: BLACK,
+        fontSize: 14,
+        marginVertical: 4,
+    },
+    stars:{
+        flexDirection: 'row',
+    },
+    row:{
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    icon: {marginRight: 5},
 });
 
 export default style;
