@@ -10,17 +10,22 @@ type HotelListProps = {
     data: Hotel[]
 }
 
-const HotelsList = ({data}: HotelListProps) => {
+const HotelsList = ({ data }: HotelListProps) => {
 
     console.log(data);
-    const renderItem = ({item}: Hotel) => <HotelCard hotel={item}/>;
+    
+    const renderItem = ({ item }: { item: Hotel }) => (
+        <HotelCard hotel={item} />
+    );
 
-    return (<FlatList
-        style={style.container}
-        showsVerticalScrollIndicator={ false }
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}/>
+    return (
+        <FlatList
+            style={style.container}
+            showsVerticalScrollIndicator={false}
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+        />
     );
 };
 

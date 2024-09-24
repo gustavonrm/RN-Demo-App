@@ -12,12 +12,12 @@ type HotelCardProps = {
     hotel: Hotel
 }
 
-const HotelCard = ({hotel}: HotelCardProps) => {
+const HotelCard = ({ hotel}: HotelCardProps) => {
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
-  <TouchableOpacity style={style.container} onPress={() => navigation.navigate('Preview', {id: hotel.id})}>
+  <TouchableOpacity testID={'hotelCardTestId'} style={style.container} onPress={() => navigation.navigate('Preview', {id: hotel.id})}>
     <View style={style.top}>
       <Image style={style.image} source={{uri: hotel.gallery[0] || 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930'}}/>
       <View style={style.priceContainer}>
@@ -35,12 +35,12 @@ const HotelCard = ({hotel}: HotelCardProps) => {
       <Text style={style.text1}>{hotel.name}</Text>
       <View style={style.row}>
         <View style={style.stars}>
-          {Array.from({length: hotel.stars}).map(() => <FontAwesomeIcon icon="star" color={YELLOW} />)}
+          {Array.from({length: hotel.stars}).map((_,index) => <FontAwesomeIcon testID={'starTestId'} key={index} icon="star" color={YELLOW} />)}
         </View>
         <Text style={style.text3}> | {hotel.userRating} user rating</Text>
       </View>
       <View style={style.row}>
-        <FontAwesomeIcon icon="clock" style={style.icon}/>
+        <FontAwesomeIcon  icon="clock" style={style.icon}/>
         <Text style={style.text3}>Check in from <Text style={style.text2}>{hotel.checkIn.from} to {hotel.checkIn.to}</Text></Text>
       </View>
       <View style={style.row}>
