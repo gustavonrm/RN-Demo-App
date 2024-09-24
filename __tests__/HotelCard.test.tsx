@@ -1,23 +1,28 @@
-/**
- * @format
- */
-
+import React from 'react';
 import 'react-native';
 import { render,screen } from '@testing-library/react-native';
-import Loader from '../src/components/common/Loader';
 import HotelCard from '../src/components/HotelCard';
-import { Hotel } from './mocks/hotel';
+import { hotel } from './mocks/hotel';
 
-describe('HotelCard Element', () => {
+describe('HotelPreview Element', () => {
+
   it('renders hotel card correctly', () => {
-    render(<HotelCard hotel={Hotel}/>);
-    expect(screen.getByTestId('hotelCardTestId')).toBeTruthy(); 
-    expect(screen.getByText(Hotel.name)).toBeTruthy(); 
+    render(<HotelCard hotel={hotel}/>);
+    expect(screen.getByTestId('hotelCardTestId')).toBeTruthy();
+    expect(screen.getByText(`€${hotel.price} /person`)).toBeTruthy();
+    expect(screen.getByText(`€${hotel.price} total`)).toBeTruthy();
+    expect(screen.getByText(hotel.name)).toBeTruthy();
+    expect(screen.getByText(`HOTEL in ${hotel.location.city} - ${hotel.location.address}`)).toBeTruthy();
+    expect(screen.getAllByTestId('starTestId').length).toBe(hotel.stars);
+    expect(screen.getByText(`| ${hotel.userRating} user rating`)).toBeTruthy();
+    expect(screen.getByText(`Check in from ${hotel.checkIn.from} to ${hotel.checkIn.to}`)).toBeTruthy();
+    expect(screen.getByText(`Check out from ${hotel.checkOut.from} to ${hotel.checkOut.to}`)).toBeTruthy();
   });
 
   it('stars are correctly rendered', () => {
-    render(<HotelCard hotel={Hotel}/>);
-    const stars = screen.getAllByTestId('starTestId');
-    expect(screen.getAllByTestId('starTestId').length).toBe(Hotel.stars)
-  })
+    render(<HotelCard hotel={hotel}/>);
+    expect(screen.getAllByTestId('starTestId').length).toBe(hotel.stars);
+  });
 });
+
+

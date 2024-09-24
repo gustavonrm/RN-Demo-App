@@ -1,4 +1,4 @@
-export const Hotel = {
+export const hotel = {
     'id': 12321,
     'name': 'Park Plaza London Waterloo',
     'location': {
@@ -24,6 +24,6 @@ export const Hotel = {
         'https://res.cloudinary.com/lastminute/image/upload/t_OSE_redes_item_view/v1499779963/Swindon_yjsrwz.jpg',
     ],
     'userRating': 9.8,
-    'price': "120",
+    'price': '120',
     'currency': 'EUR',
 };
