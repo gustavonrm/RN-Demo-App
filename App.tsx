@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from './src/navigation/Main';
-import { store } from './src/redux/store';
+import { setupStore } from './src/redux/store';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -12,7 +12,7 @@ library.add(fab, faStar, faClock);
 const App = () => {
 
   return (
-    <Provider store={store}>
+    <Provider store={setupStore()}>
       <NavigationContainer>
         <Main/>
       </NavigationContainer>

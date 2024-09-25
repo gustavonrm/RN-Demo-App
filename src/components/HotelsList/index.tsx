@@ -12,8 +12,6 @@ type HotelListProps = {
 
 const HotelsList = ({ data }: HotelListProps) => {
 
-    console.log(data);
-    
     const renderItem = ({ item }: { item: Hotel }) => (
         <HotelCard hotel={item} />
     );

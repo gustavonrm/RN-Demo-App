@@ -1,15 +1,20 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import hotelsSlice from './slices/hotels.slice';
 import { hotelsApi } from './apis/hotels.api';
 
-export const store = configureStore({
-  reducer: {
-    hotels: hotelsSlice,
-    [hotelsApi.reducerPath]: hotelsApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(hotelsApi.middleware),
+
+const rootReducer = combineReducers({
+  hotels: hotelsSlice,
+  [hotelsApi.reducerPath]: hotelsApi.reducer,
 });
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export const setupStore = (preloadedState?: Partial<RootState>) => configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(hotelsApi.middleware),
+  preloadedState,
+});
+
+export type RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch']
