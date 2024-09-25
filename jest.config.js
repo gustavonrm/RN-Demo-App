@@ -1,6 +1,9 @@
 module.exports = {
   preset: '@testing-library/react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
-  setupFilesAfterEnv: ['./jest.setup.js'],
   testMatch: ['**/*.test.{ts,tsx}'],
+  transformIgnorePatterns: [
+    'node_modules/(?!(@react-native|react-native|react-redux)/)',
+  ],
+  setupFilesAfterEnv: ['./jest.setup.js'],
 };

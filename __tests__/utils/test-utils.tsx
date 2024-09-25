@@ -3,8 +3,8 @@ import { render } from '@testing-library/react-native';
 import type { RenderOptions } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
 
-import { setupStore } from '../app/store';
-import type { AppStore, RootState } from '../app/store';
+import { setupStore } from '../../src/redux/store';
+import type { AppStore, RootState } from '../../src/redux/store';
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store.
