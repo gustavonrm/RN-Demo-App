@@ -14,11 +14,13 @@ export const hotelsSlice = createSlice({
   },
 });
 
-
 export const { setHotels } = hotelsSlice.actions;
 
 export default hotelsSlice.reducer;
 
 // selectors
 export const selectHotels = (state: { hotels: Hotel[] }): Hotel[] | [] => state.hotels;
-export const selectHotel = (id: number) => (state: { hotels: Hotel[] | undefined}): Hotel |  undefined => state.hotels?.find((e) => e.id === id);
+export const selectHotel =
+  (id: number) =>
+  (state: { hotels: Hotel[] | undefined }): Hotel | undefined =>
+    state.hotels?.find((e) => e.id === id);
