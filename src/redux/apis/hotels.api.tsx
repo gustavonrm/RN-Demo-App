@@ -11,8 +11,12 @@ export const hotelsApi = createApi({
     getHotels: builder.query<Hotel[], void>({
       query: () => '',
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
-        const { data } = await queryFulfilled;
-        dispatch(setHotels(data));
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setHotels(data));
+        } catch (error) {
+          console.log(`hotel.api ERROR:${error}`);
+        }
       },
     }),
   }),

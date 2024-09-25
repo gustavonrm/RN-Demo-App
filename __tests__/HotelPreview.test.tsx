@@ -1,12 +1,12 @@
 import React from 'react';
 import 'react-native';
-import { render,screen } from '@testing-library/react-native';
+import { render, screen } from '@testing-library/react-native';
 import HotelCard from '../src/components/HotelCard';
 import { hotel } from './mocks/hotel';
 
 describe('HotelCard Element', () => {
   it('renders hotel card correctly', () => {
-    render(<HotelCard hotel={hotel}/>);
+    render(<HotelCard hotel={hotel} />);
     expect(screen.getByTestId('hotelPreviewTestId')).toBeTruthy();
 
     expect(screen.getByText(hotel.name)).toBeTruthy();
@@ -30,10 +30,13 @@ describe('HotelCard Element', () => {
     expect(screen.getByText(`€${hotel.price} total`)).toBeTruthy();
   });
 
+  it('renders error if no data', () => {
+    render(<HotelCard />);
+    expect(screen.getByTestId('errorViewTestId')).toBeTruthy();
+  });
+
   it('stars are correctly rendered', () => {
-    render(<HotelCard hotel={hotel}/>);
+    render(<HotelCard hotel={hotel} />);
     expect(screen.getAllByTestId('starTestId').length).toBe(hotel.stars);
   });
 });
-
-

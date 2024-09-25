@@ -5,23 +5,24 @@ import HotelCard from '../HotelCard';
 import withLoader from '../HOC/withLoader';
 import { useGetHotelsQuery } from '../../redux/apis/hotels.api';
 import style from './style';
+import withError from '../HOC/withError';
+import { selectHotels } from '../../redux/slices/hotels.slice';
+import { useSelector } from 'react-redux';
 
-type HotelListProps = {
-  data: Hotel[];
-};
+const HotelsList = () => {
+  const hotels = useSelector(selectHotels);
 
-const HotelsList = ({ data }: HotelListProps) => {
   const renderItem = ({ item }: { item: Hotel }) => <HotelCard hotel={item} />;
 
   return (
     <FlatList
       style={style.container}
       showsVerticalScrollIndicator={false}
-      data={data}
+      data={hotels}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
     />
   );
 };
 
-export default withLoader(HotelsList, useGetHotelsQuery);
+export default withLoader(withError(HotelsList, selectHotels), useGetHotelsQuery);

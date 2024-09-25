@@ -27,27 +27,27 @@ export const server = setupServer(...handlers);
 
 export const errorServer = setupServer(...errorHandlers);
 
-// Enable API mocking before tests.
 beforeAll(() => {
   jest.useFakeTimers();
 });
 
-// Reset any runtime request handlers we may add during the tests.
 afterEach(() => {
-  server.resetHandlers();
-  errorServer.resetHandlers();
   jest.restoreAllMocks();
   cleanup();
 });
 
-// Disable API mocking after the tests are done.
-afterAll(() => {
-  server.close();
-  errorServer.close();
-});
-
 describe('HotelList Element', () => {
-  server.listen();
+  beforeAll(() => {
+    server.listen();
+  });
+
+  afterEach(() => {
+    server.resetHandlers();
+  });
+
+  afterAll(() => {
+    server.close();
+  });
 
   it('renders hotel list correctly', async () => {
     renderWithProviders(<HotelsList />);
@@ -56,10 +56,21 @@ describe('HotelList Element', () => {
 
     expect(await screen.getAllByTestId('hotelCardTestId').length).toBe(10);
   });
+});
 
-  it('renders errors if api fails', async () => {
+describe('HotelList Element error', () => {
+  beforeAll(() => {
     errorServer.listen();
+  });
 
+  afterEach(() => {
+    errorServer.resetHandlers();
+  });
+
+  afterAll(() => {
+    errorServer.close();
+  });
+  it('renders errors if api fails', async () => {
     renderWithProviders(<HotelsList />);
     expect(screen.getByTestId('loaderTestId')).toBeTruthy();
     await waitForElementToBeRemoved(() => screen.getByTestId('loaderTestId'));
