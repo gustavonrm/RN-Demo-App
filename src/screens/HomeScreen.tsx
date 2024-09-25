@@ -1,13 +1,19 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import HotelsList from '../components/HotelsList';
+import {
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
+import { View } from 'react-native';
 
 const HomeScreen = () => {
 
+  const insets = useSafeAreaInsets();
+  const styleSafeArea = {flex: 1,paddingLeft: insets.left,paddingRight: insets.right};
+
   return (
-    <SafeAreaView edges={[ 'left', 'right']} >
+    <View style={styleSafeArea}>
       <HotelsList/>
-    </SafeAreaView>
+    </View>
   );
 };
 

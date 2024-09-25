@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faClock, faStar } from '@fortawesome/free-solid-svg-icons';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 library.add(fab, faStar, faClock);
 
@@ -13,9 +14,11 @@ const App = () => {
 
   return (
     <Provider store={setupStore()}>
-      <NavigationContainer>
-        <Main/>
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Main/>
+        </NavigationContainer>
+      </SafeAreaProvider>
     </Provider>
   );
 };

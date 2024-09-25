@@ -1,13 +1,12 @@
 import React from 'react';
-import { ActivityIndicator, View} from 'react-native';
+import { ActivityIndicator} from 'react-native';
 import { PINK } from '../../../constants/colors';
-
+import style
+ from './style';
 const Loader = () => {
 
   return (
-  <View  testID={'loaderTestId'}>
-      <ActivityIndicator  size={'large'} color={PINK}/>
-  </View>
+  <ActivityIndicator style={style.container} testID={'loaderTestId'} size={'large'} color={PINK}/>
   );
 };
 
