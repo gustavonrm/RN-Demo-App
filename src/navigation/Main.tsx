@@ -24,7 +24,14 @@ const Main = () => {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} options={options} />
-      <Stack.Screen name="Preview" component={PreviewScreen} options={options} />
+      <Stack.Screen
+        name="Preview"
+        component={PreviewScreen}
+        options={({ route }) => ({
+          ...options,
+          ...{ title: route.params.name || 'Hotel' },
+        })}
+      />
     </Stack.Navigator>
   );
 };

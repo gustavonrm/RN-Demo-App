@@ -19,7 +19,7 @@ const HotelCard = ({ hotel }: HotelCardProps) => {
     <TouchableOpacity
       testID={'hotelCardTestId'}
       style={style.container}
-      onPress={() => navigation.navigate('Preview', { id: hotel.id })}
+      onPress={() => navigation.navigate('Preview', { id: hotel.id, name: hotel.name })}
     >
       <View style={style.top}>
         <Image
