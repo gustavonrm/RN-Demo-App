@@ -3,7 +3,7 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   testMatch: ['**/*.test.{ts,tsx}'],
   transformIgnorePatterns: [
-    'node_modules/(?!(@react-native|react-native|react-redux)/)',
+    'node_modules/(?!(@react-native|react-native|react-redux|react-native-url-polyfill)/)',
   ],
   setupFilesAfterEnv: ['./jest.setup.js'],
 };
