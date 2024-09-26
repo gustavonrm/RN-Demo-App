@@ -10,10 +10,10 @@ const withError = (Element: FC<any>, selector: (state: any, props: WithErrorProp
   return (props: WithErrorProps) => {
     const data = useSelector((state) => selector(state, props));
 
-    if (data.length > 0) {
-      return <Element {...props} />;
-    } else {
+    if (!data || data <= 0) {
       return <ErrorView />;
+    } else {
+      return <Element {...props} />;
     }
   };
 };

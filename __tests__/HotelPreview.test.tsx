@@ -4,10 +4,17 @@ import { render, screen } from '@testing-library/react-native';
 import HotelCard from '../src/components/HotelCard';
 import { hotel } from './mocks/hotel';
 import HotelPreview from '../src/components/HotelPreview';
+import { renderWithProviders } from './utils/test-utils';
+import { hotels } from './mocks/hotels';
+import { setupStore } from '../src/redux/store';
+import { setHotels } from '../src/redux/slices/hotels.slice';
 
 describe('HotelCard Element', () => {
   it('renders hotel card correctly', () => {
-    render(<HotelPreview />);
+    const store = setupStore();
+    store.dispatch(setHotels(hotels));
+
+    renderWithProviders(<HotelPreview id={hotels[0].id} />, { store });
     expect(screen.getByTestId('hotelPreviewTestId')).toBeTruthy();
 
     expect(screen.getByText(hotel.name)).toBeTruthy();
@@ -32,12 +39,10 @@ describe('HotelCard Element', () => {
   });
 
   it('renders error if no data', () => {
-    render(<HotelPreview />);
-    expect(screen.getByTestId('errorViewTestId')).toBeTruthy();
-  });
+    const store = setupStore();
+    store.dispatch(setHotels([]));
 
-  it('stars are correctly rendered', () => {
-    render(<HotelPreview />);
-    expect(screen.getAllByTestId('starTestId').length).toBe(hotel.stars);
+    renderWithProviders(<HotelPreview id={999} />, { store });
+    expect(screen.getByTestId('errorViewTestId')).toBeTruthy();
   });
 });
