@@ -16,8 +16,9 @@ const HotelPreview = ({ id }: HotelPreviewProps) => {
   return (
     <View>
       <ScrollView horizontal>
-        {hotel?.gallery.map((image) => (
+        {hotel?.gallery.map((image, index) => (
           <Image
+            key={index}
             style={style.image}
             source={{
               uri:

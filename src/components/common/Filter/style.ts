@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, GREY, PINK, WHITE } from '../../../constants/colors';
+import { BLACK, PINK, WHITE } from '../../../constants/colors';
 
 const style = StyleSheet.create({
   container: {
@@ -16,8 +16,9 @@ const style = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     height: '92.5%',
-    paddingHorizontal: 15,
-    paddingVertical: 20,
+    paddingHorizontal: 5,
+    paddingTop: 5,
+    paddingBottom: 20,
     position: 'absolute',
     shadowColor: BLACK,
     shadowOffset: {
@@ -32,7 +33,7 @@ const style = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
-    bottom: 75,
+    bottom: 50,
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1,
@@ -53,6 +54,12 @@ const style = StyleSheet.create({
     fontSize: 16,
     marginLeft: 5,
     color: WHITE,
+    fontWeight: 'bold',
+  },
+  buttonText2: {
+    fontSize: 16,
+    marginLeft: 5,
+    color: PINK,
     fontWeight: 'bold',
   },
 });
