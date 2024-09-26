@@ -9,15 +9,16 @@ import React, {
 import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import style from './style';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { WHITE, YELLOW } from '../../../constants/colors';
+import { WHITE } from '../../../constants/colors';
 import ActionButton from '../ActionButton';
+import { setFilters as setFiltersReducer } from '../../../redux/slices/filters.slice';
+import { useDispatch } from 'react-redux';
 
 type FilterContent = {
   open: boolean;
   toggle: (value: boolean) => void;
   filters: object;
-  setFilter: (key: string, value: number | string | boolean) => void;
-  clearFilters: () => void;
+  setFilters: (value: object) => void;
 };
 const FilterContext = createContext<FilterContent>({ open: false, toggle: () => {} });
 const useFilterContext = () => useContext(FilterContext);
@@ -26,20 +27,8 @@ const Filter = (props: { children: React.ReactElement[] }) => {
   const [open, toggle] = useState(false);
   const [filters, setFilters] = useState({});
 
-  console.log(filters);
-
-  const setFilter = (key: string, value: number | string | boolean) => {
-    if (filters[key] == value) setFilters({ ...filters, [key]: null });
-    else setFilters({ ...filters, [key]: value });
-  };
-
-  const clearFilters = () => {
-    toggle(false);
-    setFilters({});
-  };
-
   return (
-    <FilterContext.Provider value={{ open, toggle, filters, setFilter, clearFilters }}>
+    <FilterContext.Provider value={{ open, toggle, filters, setFilters }}>
       {props.children}
     </FilterContext.Provider>
   );
@@ -64,7 +53,20 @@ const Toggle = () => {
 };
 
 const Menu = ({ children }: { children: React.ReactNode }) => {
-  const { open, toggle, clearFilters } = useFilterContext();
+  const { open, toggle, filters, setFilters } = useFilterContext();
+
+  const dispatch = useDispatch();
+
+  const clearFilters = () => {
+    toggle(false);
+    setFilters({});
+    dispatch(setFiltersReducer({}));
+  };
+
+  const applyFilters = () => {
+    toggle(false);
+    dispatch(setFiltersReducer(filters));
+  };
 
   return (
     <Modal transparent animationType="slide" visible={open}>
@@ -79,7 +81,7 @@ const Menu = ({ children }: { children: React.ReactNode }) => {
           <ActionButton secondary onPress={() => clearFilters()}>
             <Text style={style.buttonText2}>Clear Filters</Text>
           </ActionButton>
-          <ActionButton onPress={() => toggle(!open)}>
+          <ActionButton testID={'applyFilterButtonTestId'} onPress={() => applyFilters()}>
             <Text style={style.buttonText}>Apply Filters</Text>
           </ActionButton>
         </View>
@@ -117,9 +119,15 @@ const Item = ({
   children: React.ReactNode[] | React.ReactNode;
   name: string;
   value: string | boolean | number;
-  section: string;
+  section?: string;
 }) => {
-  const { filters, setFilter } = useFilterContext();
+  const { filters, setFilters } = useFilterContext();
+
+  const setFilter = (key: string, value: number | string | boolean) => {
+    if (filters[key] == value) setFilters({ ...filters, [key]: null });
+    else setFilters({ ...filters, [key]: value });
+  };
+
   return (
     <ActionButton
       secondary={filters[section] !== value}

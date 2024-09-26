@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { FlatList } from 'react-native';
 import { Hotel } from '../types/hotel';
 import HotelCard from '../HotelCard';
@@ -8,17 +8,41 @@ import style from './style';
 import withError from '../../HOC/withError';
 import { selectHotels } from '../../../redux/slices/hotels.slice';
 import { useSelector } from 'react-redux';
+import { selectFilters } from '../../../redux/slices/filters.slice';
+
+type Filters = {
+  stars?: number;
+  sort?: string;
+};
 
 const HotelsList = () => {
   const hotels = useSelector(selectHotels);
+  const filters = useSelector(selectFilters) as Filters; // Use the Filters type
 
-  const renderItem = ({ item }: { item: Hotel }) => <HotelCard hotel={item} />;
+  const filteredHotels = useMemo(() => {
+    const filterKeys = ['stars', 'sort'];
+    const hasFilters = filterKeys.some((key) => key in filters);
+
+    return hotels.filter((hotel) => {
+      if (!hasFilters) {
+        return true;
+      }
+
+      const matchesStars = filters.stars !== undefined ? hotel.stars === filters.stars : true;
+
+      return matchesStars;
+    });
+  }, [hotels, filters]);
+
+  const renderItem = ({ item }: { item: Hotel }) => {
+    return <HotelCard hotel={item} />;
+  };
 
   return (
     <FlatList
       style={style.container}
       showsVerticalScrollIndicator={false}
-      data={hotels}
+      data={filteredHotels}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
     />

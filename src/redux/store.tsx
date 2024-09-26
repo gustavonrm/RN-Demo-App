@@ -1,9 +1,11 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import hotelsSlice from './slices/hotels.slice';
 import { hotelsApi } from './apis/hotels.api';
+import filtersSlice from './slices/filters.slice';
 
 const rootReducer = combineReducers({
   hotels: hotelsSlice,
+  filters: filtersSlice,
   [hotelsApi.reducerPath]: hotelsApi.reducer,
 });
 

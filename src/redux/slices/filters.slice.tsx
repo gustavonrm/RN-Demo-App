@@ -1,32 +1,25 @@
-import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Filter } from '../../types/Filter';
-import { RootState } from '@reduxjs/toolkit/query';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type FilterState = {
-  stars: number | null;
+  stars?: null | number;
 };
 
-const initialState: FilterState = {
-  stars: null,
-};
+const initialState: FilterState = {};
+
 // reducers
-export const FiltersSlice = createSlice({
-  name: 'Filters',
+export const filtersSlice = createSlice({
+  name: 'filters',
   initialState,
   reducers: {
-    setFilters: (state, action) => {
-      state[action.payload.key] = action.payload.value;
+    setFilters: (state, action: PayloadAction) => {
+      return action.payload;
     },
   },
 });
 
-export const { setFilters } = FiltersSlice.actions;
+export const { setFilters } = filtersSlice.actions;
 
-export default FiltersSlice.reducer;
+export default filtersSlice.reducer;
 
 // selectors
-// export const selectFilters = (state: { Filters: Filter[] }): Filter[] | [] => state.Filters;
-// export const selectFilter =
-//   (id: number) =>
-//   (state: { Filters: Filter[] | undefined }): Filter | undefined =>
-//     state.Filters?.find((e) => e.id === id);
+export const selectFilters = (state: { filters: object }): object => state.filters;
