@@ -59,9 +59,9 @@ describe('HotelList Element', () => {
     expect(screen.getByTestId('loaderTestId')).toBeTruthy();
     await waitForElementToBeRemoved(() => screen.getByTestId('loaderTestId'));
 
-    await user.press(screen.getAllByTestId('filterButtonTestId'));
-    await user.press(screen.getAllByTestId('5StarsFilterTestId'));
-    await user.press(screen.getAllByTestId('applyFilterButtonTestId'));
+    await user.press(screen.getByTestId('filterButtonTestId'));
+    await user.press(screen.getByTestId('5StarsFilterTestId'));
+    await user.press(screen.getByTestId('applyFilterButtonTestId'));
 
     expect(await screen.getAllByTestId('hotelCardTestId').length).toBe(3);
   });
