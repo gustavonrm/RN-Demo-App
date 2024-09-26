@@ -12,6 +12,7 @@ const HomeScreen = () => {
     <View style={styleSafeArea}>
       <Filter>
         <Filter.Toggle />
+        <Filter.Menu />
       </Filter>
       <HotelsList />
     </View>

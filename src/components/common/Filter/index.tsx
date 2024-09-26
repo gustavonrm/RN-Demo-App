@@ -1,29 +1,25 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import { Button, Modal, Text, TouchableOpacity, View } from 'react-native';
 import style from './style';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { WHITE } from '../../../constants/colors';
+import { BLACK, WHITE } from '../../../constants/colors';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const FilterContext = createContext();
+interface FilterContextType {
+  open: boolean;
+  toggle: (value: boolean) => void;
+}
 
-const Filter = (props) => {
+const FilterContext = createContext<FilterContextType | undefined>(undefined);
+
+const Filter = (props: { children: React.ReactElement<any, string> }) => {
   const [open, toggle] = useState(false);
 
-  return (
-    <FilterContext.Provider value={{ open, toggle }}>
-      {props.children}
-      <Modal transparent animationType="slide" visible={open}>
-        <View style={style.modal}>
-          <Text>{'ola'}</Text>
-          <Button title="Filter" color="#841584" onPress={() => toggle(!open)} />
-        </View>
-      </Modal>
-    </FilterContext.Provider>
-  );
+  return <FilterContext.Provider value={{ open, toggle }}>{props.children}</FilterContext.Provider>;
 };
 
 const Toggle = () => {
-  const { open, toggle } = React.useContext(FilterContext);
+  const { open, toggle } = useContext(FilterContext);
 
   return (
     <View style={style.toggle}>
@@ -39,6 +35,29 @@ const Toggle = () => {
   );
 };
 
+const Menu = ({ children }) => {
+  const { open, toggle } = useContext(FilterContext);
+
+  return (
+    <Modal transparent animationType="slide" visible={open}>
+      <View style={style.modal}>
+        <TouchableOpacity>
+          <FontAwesomeIcon icon="xmark" color={BLACK} />
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text>Clear Filters</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text>Applr Filters</Text>
+        </TouchableOpacity>
+      </View>
+    </Modal>
+  );
+};
+
 Filter.Toggle = Toggle;
+Filter.Menu = Menu;
 
 export default Filter;

@@ -5,10 +5,10 @@ import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faClock, faStar, faList } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faStar, faList, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-library.add(fab, faStar, faClock, faList);
+library.add(fab, faStar, faClock, faList, faXmark);
 
 const App = () => {
   return (
