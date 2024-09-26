@@ -2,15 +2,20 @@ import React, { ReactNode } from 'react';
 import { TouchableOpacity } from 'react-native';
 import style from './style';
 
-interface ActionButtonProps {
+type ActionButtonProps = {
   children: ReactNode;
   onPress: () => void;
-  secondary?: boolean; // Make secondary optional
-}
+  secondary?: boolean;
+  testID?: string;
+};
 
-const ActionButton = ({ children, onPress, secondary }: ActionButtonProps) => {
+const ActionButton = ({ children, onPress, secondary, testID }: ActionButtonProps) => {
   return (
-    <TouchableOpacity style={secondary ? style.button2 : style.button} onPress={onPress}>
+    <TouchableOpacity
+      style={secondary ? style.button2 : style.button}
+      onPress={onPress}
+      testID={testID}
+    >
       {children}
     </TouchableOpacity>
   );

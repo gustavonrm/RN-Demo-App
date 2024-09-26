@@ -2,11 +2,6 @@ import { StyleSheet } from 'react-native';
 import { BLACK, PINK, WHITE } from '../../../constants/colors';
 
 const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   modal: {
     backgroundColor: WHITE,
     borderTopLeftRadius: 20,
@@ -25,6 +20,7 @@ const style = StyleSheet.create({
       width: 0,
       height: -10,
     },
+    flexGrow: 1,
     shadowOpacity: 0.4,
     shadowRadius: 30,
     width: '100%',
@@ -56,11 +52,30 @@ const style = StyleSheet.create({
     color: WHITE,
     fontWeight: 'bold',
   },
+  sectionContainer: {
+    flex: 1,
+  },
   buttonText2: {
     fontSize: 16,
     marginLeft: 5,
     color: PINK,
     fontWeight: 'bold',
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+  },
+  actionButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'flex-end',
+    marginBottom: 5,
   },
 });
 
