@@ -6,7 +6,7 @@ import {
   waitForElementToBeRemoved,
   userEvent,
 } from '@testing-library/react-native';
-import HotelsList from '../src/components/HotelsList';
+import HotelsList from '../src/components/Hotel/HotelsList';
 import { renderWithProviders } from './utils/test-utils';
 import { http, HttpResponse, delay } from 'msw';
 import { setupServer } from 'msw/native';

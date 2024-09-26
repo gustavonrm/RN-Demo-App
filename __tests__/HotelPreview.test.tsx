@@ -1,9 +1,9 @@
 import React from 'react';
 import 'react-native';
 import { render, screen } from '@testing-library/react-native';
-import HotelCard from '../src/components/HotelCard';
+import HotelCard from '../src/components/Hotel/HotelCard';
 import { hotel } from './mocks/hotel';
-import HotelPreview from '../src/components/HotelPreview';
+import HotelPreview from '../src/components/Hotel/HotelPreview';
 import { renderWithProviders } from './utils/test-utils';
 import { hotels } from './mocks/hotels';
 import { setupStore } from '../src/redux/store';

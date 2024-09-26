@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, Text, View, Image } from 'react-native';
-import { selectHotel } from '../../redux/slices/hotels.slice';
-import withError from '../HOC/withError';
+import { selectHotel } from '../../../redux/slices/hotels.slice';
+import withError from '../../HOC/withError';
 import { useSelector } from 'react-redux';
 import style from './style';
 

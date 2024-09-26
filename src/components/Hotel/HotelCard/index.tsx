@@ -1,12 +1,12 @@
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { Hotel } from '../../types/hotel';
+import { Hotel } from '../../../types/hotel';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigationTypes';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import style from './style';
-import { YELLOW } from '../../constants/colors';
+import { YELLOW } from '../../../constants/colors';
 
 type HotelCardProps = {
   hotel: Hotel;
