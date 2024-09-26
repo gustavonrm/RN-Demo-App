@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { BLACK, PINK, WHITE } from '../../../constants/colors';
+import { BLACK, PINK, WHITE, YELLOW } from '../../../constants/colors';
 
 const style = StyleSheet.create({
   modal: {
@@ -55,6 +55,15 @@ const style = StyleSheet.create({
   sectionContainer: {
     flex: 1,
   },
+  badge: {
+    backgroundColor: YELLOW,
+    height: 15,
+    width: 15,
+    borderRadius: 25,
+    position: 'absolute',
+    right: -5,
+    top: -2,
+  },
   buttonText2: {
     fontSize: 16,
     marginLeft: 5,
@@ -65,6 +74,7 @@ const style = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   headerContainer: {
     flexDirection: 'row',
