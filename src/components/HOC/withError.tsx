@@ -6,11 +6,15 @@ type WithErrorProps = {
   [key: string]: any;
 };
 
-const withError = (Element: FC<any>, selector) => {
+const withError = (Element: FC<any>, selector: (state: any, props: WithErrorProps) => any) => {
   return (props: WithErrorProps) => {
-    const data = useSelector(selector);
-    if (data.length > 0) return <Element {...props} />;
-    else return <ErrorView />;
+    const data = useSelector((state) => selector(state, props));
+
+    if (data.length > 0) {
+      return <Element {...props} />;
+    } else {
+      return <ErrorView />;
+    }
   };
 };
 

@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Hotel } from '../../types/hotel';
+import { RootState } from '@reduxjs/toolkit/query';
 
 type HotelState = Hotel[];
 const initialState: HotelState = [];

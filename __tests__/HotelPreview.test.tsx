@@ -3,10 +3,11 @@ import 'react-native';
 import { render, screen } from '@testing-library/react-native';
 import HotelCard from '../src/components/HotelCard';
 import { hotel } from './mocks/hotel';
+import HotelPreview from '../src/components/HotelPreview';
 
 describe('HotelCard Element', () => {
   it('renders hotel card correctly', () => {
-    render(<HotelCard hotel={hotel} />);
+    render(<HotelPreview />);
     expect(screen.getByTestId('hotelPreviewTestId')).toBeTruthy();
 
     expect(screen.getByText(hotel.name)).toBeTruthy();
@@ -31,12 +32,12 @@ describe('HotelCard Element', () => {
   });
 
   it('renders error if no data', () => {
-    render(<HotelCard />);
+    render(<HotelPreview />);
     expect(screen.getByTestId('errorViewTestId')).toBeTruthy();
   });
 
   it('stars are correctly rendered', () => {
-    render(<HotelCard hotel={hotel} />);
+    render(<HotelPreview />);
     expect(screen.getAllByTestId('starTestId').length).toBe(hotel.stars);
   });
 });
