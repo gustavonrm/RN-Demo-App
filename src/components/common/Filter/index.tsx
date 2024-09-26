@@ -3,7 +3,7 @@ import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import style from './style';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { WHITE } from '../../../constants/colors';
-import ActionButton from '../../ActionButton';
+import ActionButton from '../ActionButton';
 
 type FilterContent = {
   open: boolean;

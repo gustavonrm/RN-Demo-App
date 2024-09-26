@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { PINK, WHITE } from '../../constants/colors';
+import { PINK, WHITE } from '../../../constants/colors';
 
 const style = StyleSheet.create({
   button: {
