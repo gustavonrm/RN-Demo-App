@@ -13,9 +13,10 @@ const style = StyleSheet.create({
   },
   image: {
     flex: 1,
-    width: undefined,
-    height: undefined,
+    width: 390,
+    height: 250,
     borderRadius: 10,
+    margin: 1,
   },
   priceContainer: {
     position: 'absolute',
