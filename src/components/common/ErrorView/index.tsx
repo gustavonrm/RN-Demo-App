@@ -2,10 +2,14 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import style from './style';
 
-const ErrorView = () => {
+type ErrorViewProps = {
+  message: string;
+};
+
+const ErrorView = ({ message }: ErrorViewProps) => {
   return (
     <View testID={'errorViewTestId'} style={style.container}>
-      <Text style={style.text}>{'Error Loading Data'}</Text>
+      <Text style={style.text}>{message}</Text>
     </View>
   );
 };

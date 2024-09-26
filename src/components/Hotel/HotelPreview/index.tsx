@@ -12,7 +12,6 @@ type HotelPreviewProps = {
 const HotelPreview = ({ id }: HotelPreviewProps) => {
   const hotel = useSelector((state) => selectHotel(id)(state));
 
-  console.log(hotel?.gallery[0]);
   return (
     <View>
       <ScrollView horizontal>

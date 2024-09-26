@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { FlatList } from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { FlatList, View } from 'react-native';
 import { Hotel } from '../types/hotel';
 import HotelCard from '../HotelCard';
 import withLoader from '../../HOC/withLoader';
@@ -9,6 +9,9 @@ import withError from '../../HOC/withError';
 import { selectHotels } from '../../../redux/slices/hotels.slice';
 import { useSelector } from 'react-redux';
 import { selectFilters } from '../../../redux/slices/filters.slice';
+import { Text } from 'react-native-svg';
+import ErrorView from '../../common/ErrorView';
+import Loader from '../../common/Loader';
 
 type Filters = {
   stars?: number;
@@ -17,7 +20,8 @@ type Filters = {
 
 const HotelsList = () => {
   const hotels = useSelector(selectHotels);
-  const filters = useSelector(selectFilters) as Filters; // Use the Filters type
+  const filters = useSelector(selectFilters) as Filters;
+  // const [filtering, setFiltering] = useState(false); // Not added because the filtering is very fast and the modal also hides this
 
   const filteredHotels = useMemo(() => {
     const filterKeys = ['stars', 'sort'];
@@ -40,11 +44,13 @@ const HotelsList = () => {
 
   return (
     <FlatList
+      contentContainerStyle={{ flexGrow: 1 }}
       style={style.container}
       showsVerticalScrollIndicator={false}
       data={filteredHotels}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
+      ListEmptyComponent={<ErrorView message={'No hotels found'} />}
     />
   );
 };

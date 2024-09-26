@@ -11,7 +11,7 @@ const withError = (Element: FC<any>, selector: (state: any, props: WithErrorProp
     const data = useSelector((state) => selector(state, props));
 
     if (!data || data <= 0) {
-      return <ErrorView />;
+      return <ErrorView message={'Error Loading Data'} />;
     } else {
       return <Element {...props} />;
     }
