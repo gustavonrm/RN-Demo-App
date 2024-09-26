@@ -2,6 +2,7 @@ import React from 'react';
 import HotelsList from '../components/HotelsList';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { View } from 'react-native';
+import Filter from '../components/common/Filter';
 
 const HomeScreen = () => {
   const insets = useSafeAreaInsets();
@@ -9,6 +10,7 @@ const HomeScreen = () => {
 
   return (
     <View style={styleSafeArea}>
+      <Filter />
       <HotelsList />
     </View>
   );
