@@ -1,21 +1,56 @@
-import React from 'react';
-import { ScrollView, Text, View, Image } from 'react-native';
+import React, { FC, useCallback } from 'react';
+import { ScrollView, Text, View, Image, Linking, Alert, Button } from 'react-native';
 import { selectHotel } from '../../../redux/slices/hotels.slice';
 import withError from '../../HOC/withError';
 import { useSelector } from 'react-redux';
 import style from './style';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { YELLOW } from '../../../constants/colors';
+import ErrorView from '../../common/ErrorView';
+import ActionButton from '../../common/ActionButton';
 
 type HotelPreviewProps = {
   id: number;
 };
 
+const TextIcon: FC<{
+  icon: string;
+  text: string;
+}> = ({ icon, text }) => {
+  return (
+    <View style={style.textIconContainer}>
+      <FontAwesomeIcon icon={icon} />
+      <Text style={style.text}> {text}</Text>
+    </View>
+  );
+};
+
 const HotelPreview = ({ id }: HotelPreviewProps) => {
   const hotel = useSelector((state) => selectHotel(id)(state));
 
+  if (!hotel) return <ErrorView message={'Error retriving the hotel'} />;
+
+  const startCall = useCallback(
+    (phone: string) => () => {
+      console.log('ola');
+      Linking.openURL(`tel:${phone}`).catch((error) => {
+        Alert.alert('Error staring a call!', error);
+      });
+    },
+    []
+  );
+
+  const sendEmail = useCallback(
+    (email: string) => () => {
+      Linking.openURL(`mailto:${email}`).catch((error) => {
+        Alert.alert('Error sending an Email!', error);
+      });
+    },
+    []
+  );
+
   return (
-    <ScrollView testID="hotelPreviewTestId">
+    <ScrollView testID="hotelPreviewTestId" style={style.container}>
       <ScrollView horizontal>
         {hotel?.gallery.map((image, index) => (
           <Image
@@ -29,29 +64,49 @@ const HotelPreview = ({ id }: HotelPreviewProps) => {
           />
         ))}
       </ScrollView>
-      <Text>{hotel?.name}</Text>
-      <View style={style.stars}>
-        {Array.from({ length: hotel.stars }).map((_, index) => (
-          <FontAwesomeIcon testID={'starTestId'} key={index} icon="star" color={YELLOW} />
-        ))}
+      <View style={style.body}>
+        <Text style={style.title}>{hotel?.name}</Text>
+        <View style={style.stars}>
+          {Array.from({ length: hotel.stars }).map((_, index) => (
+            <FontAwesomeIcon testID={'starTestId'} key={index} icon="star" color={YELLOW} />
+          ))}
+          <Text style={style.text}>{` | ${hotel.userRating} user rating`}</Text>
+        </View>
+
+        <View style={style.divider} />
+
+        <Text style={style.subtitle}>{'Address Information:'}</Text>
+        <TextIcon
+          icon={'location-dot'}
+          text={`${hotel.location.city}, ${hotel.location.address}`}
+        />
+        <Text style={style.text}>{`Latitude: ${hotel.location.latitude}`}</Text>
+        <Text style={style.text}>{`Longitude: ${hotel.location.latitude}`}</Text>
+        <TextIcon icon={'clock'} text={`Check in: ${hotel.checkIn.from}-${hotel.checkIn.to}`} />
+        <TextIcon icon={'clock'} text={`Check out: ${hotel.checkOut.from}-${hotel.checkOut.to}`} />
+
+        <View style={style.divider} />
+
+        <Text style={style.subtitle}>{'Contact Information:'}</Text>
+        <TextIcon icon={'phone'} text={`Phone Number: ${hotel.contact.phoneNumber}`} />
+        <TextIcon icon={'envelope'} text={`Email: ${hotel.contact.email}`} />
+
+        <View style={style.actionButtonContainer}>
+          <ActionButton secondary onPress={startCall(hotel.contact.phoneNumber)}>
+            <FontAwesomeIcon icon={'phone'} />
+          </ActionButton>
+          <ActionButton secondary onPress={sendEmail(hotel.contact.email)}>
+            <FontAwesomeIcon icon={'envelope'} />
+          </ActionButton>
+        </View>
+        <View>
+          <View style={style.divider} />
+        </View>
+        <Text style={style.text}>{`Book Hotel`}</Text>
+        <Text style={style.text}>{`€${hotel.price} /person`}</Text>
+
+        <Text style={style.text}>{`€${hotel.price} total`}</Text>
       </View>
-      <Text style={style.text3}> | {hotel.userRating} user rating</Text>
-      <Text>{'Address Information:'}</Text>
-      <Text>{`${hotel.location.city}, ${hotel.location.address}`}</Text>
-      <Text>{`Latitude: ${hotel.location.latitude}`}</Text>
-      <Text>{`Longitude: ${hotel.location.latitude}`}</Text>
-
-      <Text>{`Check in: ${hotel.checkIn.from}-${hotel.checkIn.to}`}</Text>
-      <Text>{`Check out: ${hotel.checkOut.from}-${hotel.checkOut.to}`}</Text>
-
-      <Text>{'Contact Information:'}</Text>
-      <Text>{`Phone Number: ${hotel.contact.phoneNumber}`}</Text>
-      <Text>{`Email: ${hotel.contact.email}`}</Text>
-
-      <Text>{`Book Hotel`}</Text>
-      <Text>{`€${hotel.price} /person`}</Text>
-
-      <Text>{`€${hotel.price} total`}</Text>
     </ScrollView>
   );
 };
