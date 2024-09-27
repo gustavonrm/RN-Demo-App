@@ -34,8 +34,8 @@ describe('HotelCard Element', () => {
     expect(screen.getByText(`Email: ${hotel.contact.email}`)).toBeTruthy();
 
     expect(screen.getByText(`Book Hotel`)).toBeTruthy();
-    expect(screen.getByText(`€${hotel.price} /person`)).toBeTruthy();
-    expect(screen.getByText(`€${hotel.price} total`)).toBeTruthy();
+    expect(screen.getByText(`€ ${hotel.price} /person`)).toBeTruthy();
+    expect(screen.getByText(`€ ${hotel.price} total`)).toBeTruthy();
   });
 
   it('book hotel', async () => {

@@ -5,6 +5,7 @@ const style = StyleSheet.create({
   body: {
     marginHorizontal: 15,
     marginTop: 10,
+    marginBottom: 100,
   },
   image: {
     flex: 1,
@@ -50,12 +51,29 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  actionButtonContainer: {
+  actionButtonsContainer: {
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'flex-start',
     marginLeft: -5,
     marginTop: 5,
+  },
+  bottomContainer: {
+    position: 'absolute',
+    flex: 1,
+    flexDirection: 'row',
+    bottom: 0,
+    backgroundColor: PINK,
+    flexGrow: 1,
+    width: '100%',
+    padding: 10,
+    paddingBottom: 20,
+    paddingHorizontal: 15,
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+  },
+  bookButton: {
+    minWidth: 150,
   },
 });
 
