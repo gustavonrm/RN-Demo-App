@@ -15,6 +15,7 @@ import {
   faEnvelope,
   faArrowUp,
   faArrowDown,
+  faChevronLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -28,7 +29,8 @@ library.add(
   faPhone,
   faEnvelope,
   faArrowUp,
-  faArrowDown
+  faArrowDown,
+  faChevronLeft
 );
 
 const App = () => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
@@ -6,6 +6,9 @@ import {
 import HomeScreen from '../screens/HomeScreen';
 import PreviewScreen from '../screens/PreviewScreen';
 import { PINK, WHITE } from '../constants/colors';
+import { View } from 'react-native';
+import ActionButton from '../components/common/ActionButton';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const Main = () => {
   const Stack = createNativeStackNavigator();
@@ -21,15 +24,28 @@ const Main = () => {
     },
   };
 
+  const GoBackButton: FC<{ navigation: any }> = ({ navigation }) => {
+    return (
+      <View style={{ position: 'absolute' }}>
+        <ActionButton onPress={() => navigation.goBack(null)}>
+          <FontAwesomeIcon color={WHITE} icon={'chevron-left'} size={25} />
+        </ActionButton>
+      </View>
+    );
+  };
+
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} options={options} />
       <Stack.Screen
         name="Preview"
         component={PreviewScreen}
-        options={({ route }) => ({
+        options={({ route, navigation }) => ({
           ...options,
-          ...{ title: route.params.name || 'Hotel' },
+          ...{
+            headerLeft: () => <GoBackButton navigation={navigation} />,
+          },
+          ...{ title: route.params?.name || 'Hotel' },
         })}
       />
     </Stack.Navigator>
