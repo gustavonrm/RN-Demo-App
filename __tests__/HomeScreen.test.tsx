@@ -74,6 +74,33 @@ describe('HotelList Element', () => {
     expect(screen.getByTestId('loaderTestId')).toBeTruthy();
     await waitForElementToBeRemoved(() => screen.getByTestId('loaderTestId'));
 
+    await user.press(screen.getByTestId('filterButtonTestId'));
+    await user.press(screen.getByTestId('priceDescFilterTestId'));
+    await user.press(screen.getByTestId('applyFilterButtonTestId'));
+
+    const hotelCards = screen.getAllByTestId('priceTestId');
+
+    for (let i = 1; i < hotelCards.length; i++) {
+      let price1 = parseFloat(hotelCards[i - 1].children[0].toString().replace('€', ''));
+      let price2 = parseFloat(hotelCards[i].children[0].toString().replace('€', ''));
+      expect(price1).toBeGreaterThanOrEqual(price2);
+    }
+  });
+
+  it('renders filters sort by price decrease and 4 stars correctly', async () => {
+    const user = userEvent.setup();
+    const store = setupStore();
+
+    renderWithProviders(<HomeScreen />, { store });
+    expect(screen.getByTestId('loaderTestId')).toBeTruthy();
+    await waitForElementToBeRemoved(() => screen.getByTestId('loaderTestId'));
+
+    await user.press(screen.getByTestId('filterButtonTestId'));
+    await user.press(screen.getByTestId('5StarsFilterTestId'));
+    await user.press(screen.getByTestId('priceDescFilterTestId'));
+    await user.press(screen.getByTestId('applyFilterButtonTestId'));
+
+    expect(await screen.getAllByTestId('hotelCardTestId').length).toBe(6);
     const hotelCards = screen.getAllByTestId('priceTestId');
 
     for (let i = 1; i < hotelCards.length; i++) {
