@@ -28,9 +28,9 @@ const Main = () => {
 
   const GoBackButton: FC<{ navigation: NavigationProp<RootStackParamList> }> = ({ navigation }) => {
     return (
-      <View style={{ position: 'absolute' }}>
+      <View style={{ marginLeft: -20 }}>
         <ActionButton onPress={() => navigation.goBack()}>
-          <FontAwesomeIcon color={WHITE} icon={'chevron-left'} size={25} />
+          <FontAwesomeIcon color={WHITE} icon={'chevron-left'} />
         </ActionButton>
       </View>
     );
