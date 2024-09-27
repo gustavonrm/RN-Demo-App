@@ -5,7 +5,6 @@ import React, {
   isValidElement,
   cloneElement,
   Children,
-  useCallback,
 } from 'react';
 import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import style from './style';

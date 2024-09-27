@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import ErrorView from '../common/ErrorView';
@@ -7,7 +8,7 @@ type WithErrorProps = {
 };
 
 const withError = (Element: FC<any>, selector: (state: any, props: WithErrorProps) => any) => {
-  return (props: WithErrorProps) => {
+  const WrappedComponent = (props: WithErrorProps) => {
     const data = useSelector((state) => selector(state, props));
 
     if (!data || data <= 0) {
@@ -16,6 +17,7 @@ const withError = (Element: FC<any>, selector: (state: any, props: WithErrorProp
       return <Element {...props} />;
     }
   };
+  return WrappedComponent;
 };
 
 export default withError;

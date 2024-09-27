@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC } from 'react';
 import Loader from '../common/Loader';
 import { SerializedError } from '@reduxjs/toolkit';
@@ -10,7 +11,7 @@ const withLoader = (
   Element: FC<any>,
   useQuery: (arg?: any) => { data?: any; error?: SerializedError | any; isLoading: boolean }
 ) => {
-  return (props: WithLoaderProps) => {
+  const WrappedComponent = (props: WithLoaderProps) => {
     const { isLoading } = useQuery();
 
     if (isLoading) {
@@ -19,6 +20,7 @@ const withLoader = (
 
     return <Element {...props} />;
   };
+  return WrappedComponent;
 };
 
 export default withLoader;

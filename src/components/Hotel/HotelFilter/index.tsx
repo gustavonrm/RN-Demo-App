@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { PINK, YELLOW } from '../../../constants/colors';
+import { YELLOW } from '../../../constants/colors';
 import Filter from '../../common/Filter';
 
 const multiRender = (times: number, element: React.ReactNode) => {

@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import HotelPreview from '../components/Hotel/HotelPreview';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { WHITE } from '../constants/colors';
+
 type PreviewScreenRouteProp = RouteProp<{ Preview: { id: number } }, 'Preview'>;
 
 const PreviewScreen = () => {

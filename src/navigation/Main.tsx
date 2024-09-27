@@ -9,6 +9,8 @@ import { PINK, WHITE } from '../constants/colors';
 import { View } from 'react-native';
 import ActionButton from '../components/common/ActionButton';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../types/navigation';
 
 const Main = () => {
   const Stack = createNativeStackNavigator();
@@ -24,10 +26,10 @@ const Main = () => {
     },
   };
 
-  const GoBackButton: FC<{ navigation: any }> = ({ navigation }) => {
+  const GoBackButton: FC<{ navigation: NavigationProp<RootStackParamList> }> = ({ navigation }) => {
     return (
       <View style={{ position: 'absolute' }}>
-        <ActionButton onPress={() => navigation.goBack(null)}>
+        <ActionButton onPress={() => navigation.goBack()}>
           <FontAwesomeIcon color={WHITE} icon={'chevron-left'} size={25} />
         </ActionButton>
       </View>
