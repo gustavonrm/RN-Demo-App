@@ -25,11 +25,19 @@ const HotelsList = () => {
     const { stars, rating, price } = filters;
 
     // stars
-    const filterByStars = (hotel: Hotel) => (stars !== undefined ? hotel.stars === stars : true);
+    const filterByStars = (hotel: Hotel) => {
+      if (!filters?.stars) {
+        return true;
+      }
+
+      return stars !== undefined ? hotel.stars === stars : true;
+    };
 
     // rating
-    const filterByRating = (hotel: Hotel) =>
-      rating !== undefined ? hotel.userRating >= rating[0] && hotel.userRating < rating[1] : true;
+    const filterByRating = (hotel: Hotel) => {
+      if (!filters?.rating) return true;
+      return hotel.userRating >= rating[0] && hotel.userRating < rating[1];
+    };
 
     // price
     const sortByPrice = (a: Hotel, b: Hotel) => {
