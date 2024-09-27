@@ -87,6 +87,21 @@ describe('HotelList Element', () => {
     }
   });
 
+  it('renders filters filter by average rating correctly', async () => {
+    const user = userEvent.setup();
+    const store = setupStore();
+
+    renderWithProviders(<HomeScreen />, { store });
+    expect(screen.getByTestId('loaderTestId')).toBeTruthy();
+    await waitForElementToBeRemoved(() => screen.getByTestId('loaderTestId'));
+
+    await user.press(screen.getByTestId('filterButtonTestId'));
+    await user.press(screen.getByTestId('ratingAvgFilterTestId'));
+    await user.press(screen.getByTestId('applyFilterButtonTestId'));
+
+    expect(await screen.getAllByTestId('hotelCardTestId').length).toBe(2);
+  });
+
   it('renders filters sort by price decrease and 4 stars correctly', async () => {
     const user = userEvent.setup();
     const store = setupStore();
