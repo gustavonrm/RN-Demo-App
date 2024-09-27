@@ -23,7 +23,6 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     color: BLACK,
     fontSize: 24,
-    marginVertical: 2,
   },
   subtitle: {
     fontWeight: '600',
@@ -42,7 +41,7 @@ const style = StyleSheet.create({
   divider: {
     borderWidth: 1,
     borderColor: GREY,
-    marginVertical: 10,
+    marginVertical: 7,
   },
   container: {
     backgroundColor: WHITE,
@@ -54,9 +53,8 @@ const style = StyleSheet.create({
   actionButtonsContainer: {
     flexDirection: 'row',
     flex: 1,
-    justifyContent: 'flex-start',
-    marginLeft: -5,
     marginTop: 5,
+    marginHorizontal: -10,
   },
   bottomContainer: {
     position: 'absolute',

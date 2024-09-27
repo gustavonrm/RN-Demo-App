@@ -9,7 +9,7 @@ import React, {
 import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import style from './style';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { WHITE } from '../../../constants/colors';
+import { PINK, WHITE } from '../../../constants/colors';
 import ActionButton from '../ActionButton';
 import { setFilters as setFiltersReducer } from '../../../redux/slices/filters.slice';
 import { useDispatch } from 'react-redux';
@@ -93,20 +93,24 @@ const Menu = ({ children }: { children: React.ReactNode }) => {
 const Section = ({
   children,
   name,
+  sort,
 }: {
   children: React.ReactNode[] | React.ReactNode;
   name: string;
+  sort?: boolean;
 }) => {
   return (
-    <View>
+    <>
       <Text style={style.text}>{name}</Text>
-      {Children.map(children, (child) => {
-        if (isValidElement(child)) {
-          return cloneElement(child, { section: name });
-        }
-        return child;
-      })}
-    </View>
+      <View style={sort && { flex: 1, flexDirection: 'row' }}>
+        {Children.map(children, (child) => {
+          if (isValidElement(child)) {
+            return cloneElement(child, { section: name });
+          }
+          return child;
+        })}
+      </View>
+    </>
   );
 };
 
@@ -128,13 +132,14 @@ const Item = ({
     else setFilters({ ...filters, [key]: value });
   };
 
+  const selected = filters[section] == value;
   return (
     <ActionButton
-      secondary={filters[section] !== value}
+      secondary={!selected}
       testID={`${name}FilterTestId`}
       onPress={() => setFilter(section, value)}
     >
-      <Text style={style.buttonText}>{children}</Text>
+      <Text style={{ ...style.buttonText, color: selected ? WHITE : PINK }}>{children}</Text>
     </ActionButton>
   );
 };

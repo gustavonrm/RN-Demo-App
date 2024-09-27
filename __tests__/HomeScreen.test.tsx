@@ -96,7 +96,7 @@ describe('HotelList Element', () => {
     await waitForElementToBeRemoved(() => screen.getByTestId('loaderTestId'));
 
     await user.press(screen.getByTestId('filterButtonTestId'));
-    await user.press(screen.getByTestId('5StarsFilterTestId'));
+    await user.press(screen.getByTestId('4StarsFilterTestId'));
     await user.press(screen.getByTestId('priceDescFilterTestId'));
     await user.press(screen.getByTestId('applyFilterButtonTestId'));
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { YELLOW } from '../../../constants/colors';
+import { PINK, YELLOW } from '../../../constants/colors';
 import Filter from '../../common/Filter';
 
 const multiRender = (times: number, element: React.ReactNode) => {
@@ -14,6 +14,14 @@ const HotelFilter = () => {
     <Filter>
       <Filter.Toggle />
       <Filter.Menu>
+        <Filter.Section name={'price'} sort>
+          <Filter.Item name={'priceAsc'} value={'asc'}>
+            <FontAwesomeIcon color={YELLOW} icon={'arrow-up'} />
+          </Filter.Item>
+          <Filter.Item name={'priceDesc'} value={'desc'}>
+            <FontAwesomeIcon color={YELLOW} icon={'arrow-down'} />
+          </Filter.Item>
+        </Filter.Section>
         <Filter.Section name={'stars'}>
           <Filter.Item name={'5Stars'} value={5}>
             {multiRender(5, <FontAwesomeIcon color={YELLOW} icon={'star'} />)}

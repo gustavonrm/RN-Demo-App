@@ -13,10 +13,23 @@ import {
   faLocationDot,
   faPhone,
   faEnvelope,
+  faArrowUp,
+  faArrowDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-library.add(fab, faStar, faClock, faList, faXmark, faLocationDot, faPhone, faEnvelope);
+library.add(
+  fab,
+  faStar,
+  faClock,
+  faList,
+  faXmark,
+  faLocationDot,
+  faPhone,
+  faEnvelope,
+  faArrowUp,
+  faArrowDown
+);
 
 const App = () => {
   return (

@@ -3,6 +3,7 @@ import { PINK, WHITE } from '../../../constants/colors';
 
 const style = StyleSheet.create({
   button: {
+    flex: 1,
     backgroundColor: PINK,
     borderColor: PINK,
     borderWidth: 1,
@@ -13,6 +14,7 @@ const style = StyleSheet.create({
     margin: 5,
   },
   button2: {
+    flex: 1,
     backgroundColor: WHITE,
     borderColor: PINK,
     borderWidth: 1,

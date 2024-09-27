@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { FlatList, View } from 'react-native';
+import React, { useMemo } from 'react';
+import { FlatList } from 'react-native';
 import { Hotel } from '../types/hotel';
 import HotelCard from '../HotelCard';
 import withLoader from '../../HOC/withLoader';
@@ -9,25 +9,22 @@ import withError from '../../HOC/withError';
 import { selectHotels } from '../../../redux/slices/hotels.slice';
 import { useSelector } from 'react-redux';
 import { selectFilters } from '../../../redux/slices/filters.slice';
-import { Text } from 'react-native-svg';
 import ErrorView from '../../common/ErrorView';
-import Loader from '../../common/Loader';
 
 type Filters = {
   stars?: number;
-  sort?: string;
+  price?: string;
 };
 
 const HotelsList = () => {
   const hotels = useSelector(selectHotels);
   const filters = useSelector(selectFilters) as Filters;
   // const [filtering, setFiltering] = useState(false); // Not added because the filtering is very fast and the modal also hides this
-
   const filteredHotels = useMemo(() => {
-    const filterKeys = ['stars', 'sort'];
+    const filterKeys = ['stars', 'price'];
     const hasFilters = filterKeys.some((key) => key in filters);
 
-    return hotels.filter((hotel) => {
+    let filtered = hotels.filter((hotel) => {
       if (!hasFilters) {
         return true;
       }
@@ -36,6 +33,19 @@ const HotelsList = () => {
 
       return matchesStars;
     });
+
+    if (filters.price) {
+      filtered = filtered.sort((a: Hotel, b: Hotel) => {
+        if (filters.price === 'desc') {
+          return b.price - a.price;
+        } else if (filters.price === 'asc') {
+          return a.price - b.price;
+        }
+        return 0;
+      });
+    }
+
+    return filtered;
   }, [hotels, filters]);
 
   const renderItem = ({ item }: { item: Hotel }) => {

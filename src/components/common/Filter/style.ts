@@ -77,9 +77,8 @@ const style = StyleSheet.create({
     textTransform: 'capitalize',
   },
   headerContainer: {
+    width: 50,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
   },
   actionButtonContainer: {
     flexDirection: 'row',
