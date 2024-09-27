@@ -1,6 +1,6 @@
 import React from 'react';
 import 'react-native';
-import { render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 import HotelCard from '../src/components/Hotel/HotelCard';
 import { hotel } from './mocks/hotel';
 import HotelPreview from '../src/components/Hotel/HotelPreview';
@@ -36,6 +36,19 @@ describe('HotelCard Element', () => {
     expect(screen.getByText(`Book Hotel`)).toBeTruthy();
     expect(screen.getByText(`€${hotel.price} /person`)).toBeTruthy();
     expect(screen.getByText(`€${hotel.price} total`)).toBeTruthy();
+  });
+
+  it('book hotel', async () => {
+    const user = userEvent.setup();
+    const store = setupStore();
+    store.dispatch(setHotels(hotels));
+
+    renderWithProviders(<HotelPreview id={hotels[0].id} />, { store });
+    expect(screen.getByTestId('hotelPreviewTestId')).toBeTruthy();
+
+    expect(screen.getByText(`Book Hotel`)).toBeTruthy();
+    await user.press(screen.getByText(`Book Hotel`));
+    expect(screen.getByText(`Cancel Booking`)).toBeTruthy();
   });
 
   it('renders error if no data', () => {
