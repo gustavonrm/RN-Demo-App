@@ -124,4 +124,9 @@ describe('HotelList Element', () => {
       expect(price1).toBeGreaterThanOrEqual(price2);
     }
   });
+
+  it('snapshot test', () => {
+    const store = setupStore();
+    expect(renderWithProviders(<HomeScreen />, { store })).toMatchSnapshot();
+  });
 });

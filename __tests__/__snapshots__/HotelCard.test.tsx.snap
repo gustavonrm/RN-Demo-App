@@ -1,0 +1,296 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HotelPreview Element snapshot test 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "#FFF",
+      "borderColor": "#DCDCDC",
+      "borderRadius": 10,
+      "borderWidth": 1,
+      "flex": 1,
+      "marginVertical": 10,
+      "opacity": 1,
+      "paddingBottom": 10,
+    }
+  }
+  testID="hotelCardTestId"
+>
+  <View
+    style={
+      {
+        "borderRadius": 10,
+        "flex": 1,
+        "flexDirection": "column",
+        "height": 200,
+      }
+    }
+  >
+    <Image
+      source={
+        {
+          "uri": "https://res.cloudinary.com/lastminute/image/upload/t_OSE_redes_item_view/v1499779963/Swindon_yjsrwz.jpg",
+        }
+      }
+      style={
+        {
+          "borderRadius": 10,
+          "flex": 1,
+          "height": undefined,
+          "width": undefined,
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "alignItems": "flex-end",
+          "bottom": 0,
+          "fontWeight": "bold",
+          "margin": 10,
+          "position": "absolute",
+          "right": 0,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#FFF",
+            "fontSize": 24,
+            "fontWeight": "bold",
+            "textShadowColor": "#E12C70",
+            "textShadowOffset": {
+              "height": 1,
+              "width": -1,
+            },
+            "textShadowRadius": 4,
+          }
+        }
+      >
+        €120
+        <Text
+          style={
+            {
+              "color": "#FFF",
+              "fontSize": 14,
+              "fontWeight": "light !important",
+              "textShadowColor": "#E12C70",
+              "textShadowOffset": {
+                "height": 1,
+                "width": -1,
+              },
+              "textShadowRadius": 4,
+            }
+          }
+        >
+           /person
+        </Text>
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#FFF",
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "marginTop": 5,
+            "textShadowColor": "#E12C70",
+            "textShadowOffset": {
+              "height": 1,
+              "width": -1,
+            },
+            "textShadowRadius": 4,
+          }
+        }
+        testID="priceTestId"
+      >
+        €120
+         
+        total
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "flex": 1,
+        "flexDirection": "column",
+        "margin": 10,
+      }
+    }
+  >
+    <Text
+      numberOfLines={1}
+      style={
+        {
+          "color": "#000",
+          "fontSize": 14,
+          "fontWeight": "300",
+          "marginVertical": 2,
+        }
+      }
+    >
+      HOTEL in 
+      London
+       - 
+      6 Hercules Road
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#000",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "marginVertical": 2,
+        }
+      }
+    >
+      Park Plaza London Waterloo
+    </Text>
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          testID="starTestId"
+        />
+        <View
+          testID="starTestId"
+        />
+        <View
+          testID="starTestId"
+        />
+        <View
+          testID="starTestId"
+        />
+      </View>
+      <Text
+        style={
+          {
+            "color": "#000",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "marginVertical": 4,
+          }
+        }
+      >
+         | 
+        9.8
+         user rating
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View />
+      <Text
+        style={
+          {
+            "color": "#000",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "marginVertical": 4,
+          }
+        }
+      >
+        Check in from
+         
+        <Text
+          style={
+            {
+              "color": "#000",
+              "fontSize": 14,
+              "fontWeight": "300",
+              "marginVertical": 2,
+            }
+          }
+        >
+          14:00
+           to 
+          20:00
+        </Text>
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View />
+      <Text
+        style={
+          {
+            "color": "#000",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "marginVertical": 4,
+          }
+        }
+      >
+        Check out from
+         
+        <Text
+          style={
+            {
+              "color": "#000",
+              "fontSize": 14,
+              "fontWeight": "300",
+              "marginVertical": 2,
+            }
+          }
+        >
+          07:00
+           to 
+          10:00
+        </Text>
+      </Text>
+    </View>
+  </View>
+</View>
+`;

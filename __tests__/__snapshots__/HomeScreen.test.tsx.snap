@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HotelList Element snapshot test 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "bottom": 50,
+        "justifyContent": "center",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "zIndex": 1,
+      }
+    }
+  >
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#E12C70",
+          "borderRadius": 25,
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "opacity": 1,
+          "paddingHorizontal": 20,
+          "paddingVertical": 5,
+          "zIndex": 2,
+        }
+      }
+      testID="filterButtonTestId"
+    >
+      <View />
+      <Text
+        style={
+          {
+            "color": "#FFF",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "marginLeft": 5,
+          }
+        }
+      >
+        Filter
+      </Text>
+    </View>
+  </View>
+  <ActivityIndicator
+    color="#E12C70"
+    size="large"
+    style={
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+    testID="loaderTestId"
+  />
+</View>
+`;

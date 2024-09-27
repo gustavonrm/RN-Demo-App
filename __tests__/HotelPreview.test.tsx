@@ -58,4 +58,9 @@ describe('HotelCard Element', () => {
     renderWithProviders(<HotelPreview id={999} />, { store });
     expect(screen.getByTestId('errorViewTestId')).toBeTruthy();
   });
+
+  it('snapshot test', () => {
+    const store = setupStore();
+    expect(renderWithProviders(<HotelPreview id={hotels[0].id} />, { store })).toMatchSnapshot();
+  });
 });

@@ -28,4 +28,8 @@ describe('HotelPreview Element', () => {
     render(<HotelCard hotel={hotel} />);
     expect(screen.getAllByTestId('starTestId').length).toBe(hotel.stars);
   });
+
+  it('snapshot test', () => {
+    expect(render(<HotelCard hotel={hotel} />)).toMatchSnapshot();
+  });
 });

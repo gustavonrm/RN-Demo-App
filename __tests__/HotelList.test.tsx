@@ -77,4 +77,8 @@ describe('HotelList Element error', () => {
 
     expect(screen.getByTestId('errorViewTestId')).toBeTruthy();
   });
+
+  it('snapshot test', () => {
+    expect(renderWithProviders(<HotelsList />)).toMatchSnapshot();
+  });
 });
