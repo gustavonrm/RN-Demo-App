@@ -35,7 +35,7 @@ const HotelCard = ({ hotel }: HotelCardProps) => {
             {`${hotel.currency === 'EUR' ? '€' : '$'}${hotel.price}`}
             <Text style={style.priceText2}>{' /person'}</Text>
           </Text>
-          <Text style={style.priceText3}>
+          <Text testID={'priceTestId'} style={style.priceText3}>
             {`${hotel.currency === 'EUR' ? '€' : '$'}${hotel.price}`} {'total'}
           </Text>
         </View>
