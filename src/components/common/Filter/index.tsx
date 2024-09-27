@@ -5,6 +5,7 @@ import React, {
   isValidElement,
   cloneElement,
   Children,
+  useCallback,
 } from 'react';
 import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import style from './style';
@@ -38,16 +39,17 @@ const Filter = (props: { children: React.ReactElement[] }) => {
 };
 
 const Toggle = () => {
-  const { open, toggle } = useFilterContext();
+  const { toggle, setFilters } = useFilterContext();
   const selectedFilters = useSelector(selectFilters);
+
+  const openAction = () => {
+    toggle(true);
+    setFilters(selectedFilters);
+  };
 
   return (
     <View style={style.toggle}>
-      <TouchableOpacity
-        testID={'filterButtonTestId'}
-        style={style.button}
-        onPress={() => toggle(!open)}
-      >
+      <TouchableOpacity testID={'filterButtonTestId'} style={style.button} onPress={openAction}>
         {Object.keys(selectedFilters).length > 0 && <View style={style.badge} />}
         <FontAwesomeIcon icon="list" color={WHITE} />
         <Text style={style.buttonText}>Filter</Text>
@@ -67,6 +69,11 @@ const Menu = ({ children }: { children: React.ReactNode }) => {
     dispatch(setFiltersReducer({}));
   };
 
+  const closeAction = () => {
+    toggle(false);
+    setFilters({});
+  };
+
   const applyFilters = () => {
     toggle(false);
     dispatch(setFiltersReducer(filters));
@@ -76,7 +83,7 @@ const Menu = ({ children }: { children: React.ReactNode }) => {
     <Modal transparent animationType="slide" visible={open}>
       <View style={style.modal}>
         <View style={style.headerContainer}>
-          <ActionButton onPress={() => toggle(!open)}>
+          <ActionButton onPress={() => closeAction()}>
             <FontAwesomeIcon icon="xmark" color={WHITE} size={20} />
           </ActionButton>
         </View>
