@@ -46,10 +46,6 @@ const style = StyleSheet.create({
   container: {
     backgroundColor: WHITE,
   },
-  textIconContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   actionButtonsContainer: {
     flexDirection: 'row',
     flex: 1,

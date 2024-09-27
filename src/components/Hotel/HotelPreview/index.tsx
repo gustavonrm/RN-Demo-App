@@ -1,5 +1,5 @@
-import React, { FC, useCallback, useState } from 'react';
-import { ScrollView, Text, View, Image, Linking, Alert, Button } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { ScrollView, Text, View, Image, Linking, Alert } from 'react-native';
 import { selectHotel } from '../../../redux/slices/hotels.slice';
 import withError from '../../HOC/withError';
 import { useSelector } from 'react-redux';
@@ -8,21 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { PINK, WHITE, YELLOW } from '../../../constants/colors';
 import ErrorView from '../../common/ErrorView';
 import ActionButton from '../../common/ActionButton';
+import TextIcon from '../../common/TextIcon';
 
 type HotelPreviewProps = {
   id: number;
-};
-
-const TextIcon: FC<{
-  icon: string;
-  text: string;
-}> = ({ icon, text }) => {
-  return (
-    <View style={style.textIconContainer}>
-      <FontAwesomeIcon icon={icon} />
-      <Text style={style.text}> {text}</Text>
-    </View>
-  );
 };
 
 const HotelPreview = ({ id }: HotelPreviewProps) => {
