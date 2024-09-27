@@ -40,8 +40,12 @@ const HotelPreview = ({ id }: HotelPreviewProps) => {
 
   return (
     <>
-      <ScrollView testID="hotelPreviewTestId" style={style.container}>
-        <ScrollView horizontal>
+      <ScrollView
+        testID="hotelPreviewTestId"
+        style={style.container}
+        showsVerticalScrollIndicator={false}
+      >
+        <ScrollView horizontal persistentScrollbar>
           {hotel?.gallery.map((image, index) => (
             <Image
               key={index}
