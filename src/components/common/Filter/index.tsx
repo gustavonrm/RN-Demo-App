@@ -11,8 +11,11 @@ import style from './style';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { PINK, WHITE } from '../../../constants/colors';
 import ActionButton from '../ActionButton';
-import { setFilters as setFiltersReducer } from '../../../redux/slices/filters.slice';
-import { useDispatch } from 'react-redux';
+import {
+  selectFilters,
+  setFilters as setFiltersReducer,
+} from '../../../redux/slices/filters.slice';
+import { useDispatch, useSelector } from 'react-redux';
 
 type FilterContent = {
   open: boolean;
@@ -35,7 +38,8 @@ const Filter = (props: { children: React.ReactElement[] }) => {
 };
 
 const Toggle = () => {
-  const { open, toggle, filters } = useFilterContext();
+  const { open, toggle } = useFilterContext();
+  const selectedFilters = useSelector(selectFilters);
 
   return (
     <View style={style.toggle}>
@@ -44,7 +48,7 @@ const Toggle = () => {
         style={style.button}
         onPress={() => toggle(!open)}
       >
-        {Object.keys(filters).length > 0 && <View style={style.badge} />}
+        {Object.keys(selectedFilters).length > 0 && <View style={style.badge} />}
         <FontAwesomeIcon icon="list" color={WHITE} />
         <Text style={style.buttonText}>Filter</Text>
       </TouchableOpacity>
@@ -122,7 +126,7 @@ const Item = ({
 }: {
   children: React.ReactNode[] | React.ReactNode;
   name: string;
-  value: string | boolean | number;
+  value: string | boolean | number | number[];
   section?: string;
 }) => {
   const { filters, setFilters } = useFilterContext();

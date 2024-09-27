@@ -39,6 +39,17 @@ const HotelFilter = () => {
             {multiRender(1, <FontAwesomeIcon color={YELLOW} icon={'star'} />)}
           </Filter.Item>
         </Filter.Section>
+        <Filter.Section name={'rating'}>
+          <Filter.Item name={'ratingGood'} value={[7, 10]}>
+            {'Good (7-10)'}
+          </Filter.Item>
+          <Filter.Item name={'ratingAvg'} value={[3, 7]}>
+            {'Average (3-7)'}
+          </Filter.Item>
+          <Filter.Item name={'ratingBag'} value={[0, 3]}>
+            {'Bad (0-3)'}
+          </Filter.Item>
+        </Filter.Section>
       </Filter.Menu>
     </Filter>
   );

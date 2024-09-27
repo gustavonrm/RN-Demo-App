@@ -33,7 +33,6 @@ const HotelPreview = ({ id }: HotelPreviewProps) => {
 
   const startCall = useCallback(
     (phone: string) => () => {
-      console.log('ola');
       Linking.openURL(`tel:${phone}`).catch((error) => {
         Alert.alert('Error staring a call!', error);
       });

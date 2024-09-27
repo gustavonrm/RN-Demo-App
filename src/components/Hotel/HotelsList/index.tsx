@@ -14,35 +14,34 @@ import ErrorView from '../../common/ErrorView';
 type Filters = {
   stars?: number;
   price?: string;
+  rating?: number[];
 };
 
 const HotelsList = () => {
   const hotels = useSelector(selectHotels);
   const filters = useSelector(selectFilters) as Filters;
-  // const [filtering, setFiltering] = useState(false); // Not added because the filtering is very fast and the modal also hides this
+
   const filteredHotels = useMemo(() => {
-    const filterKeys = ['stars', 'price'];
-    const hasFilters = filterKeys.some((key) => key in filters);
+    const { stars, rating, price } = filters;
 
-    let filtered = hotels.filter((hotel) => {
-      if (!hasFilters) {
-        return true;
-      }
+    // stars
+    const filterByStars = (hotel: Hotel) => (stars !== undefined ? hotel.stars === stars : true);
 
-      const matchesStars = filters.stars !== undefined ? hotel.stars === filters.stars : true;
+    // rating
+    const filterByRating = (hotel: Hotel) =>
+      rating !== undefined ? hotel.userRating >= rating[0] && hotel.userRating < rating[1] : true;
 
-      return matchesStars;
-    });
+    // price
+    const sortByPrice = (a: Hotel, b: Hotel) => {
+      if (price === 'desc') return b.price - a.price;
+      if (price === 'asc') return a.price - b.price;
+      return 0;
+    };
 
-    if (filters.price) {
-      filtered = filtered.sort((a: Hotel, b: Hotel) => {
-        if (filters.price === 'desc') {
-          return b.price - a.price;
-        } else if (filters.price === 'asc') {
-          return a.price - b.price;
-        }
-        return 0;
-      });
+    let filtered = hotels.filter((hotel) => filterByStars(hotel) && filterByRating(hotel));
+
+    if (price) {
+      filtered = filtered.sort(sortByPrice);
     }
 
     return filtered;
