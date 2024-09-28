@@ -71,11 +71,25 @@ This is one way to run your app — you can also run it directly from within And
 
 If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
+---
+
 If you encounter the following error while building the app for the Android environment:
 
 `ERROR: autolinkLibrariesFromCommand: process npx @react-native-community/cli config exited with error code: 126`
 
-Navigate to the root of your project repository and run the following command:
+ Run the following command:
 
-`chmod +x /Users/[RN-PROJECT-PATH]/node_modules/.bin/rnc-cli`
+```bash
+chmod +x /Users/[RN-PROJECT-PATH]/node_modules/.bin/rnc-cli
+```
+
+---
+
+If iOS simulator does not load your project you can try to run specifying a simulator name, example: 
+
+```bash
+yarn ios --simulator"iPhone 15"
+```
+
+
 
